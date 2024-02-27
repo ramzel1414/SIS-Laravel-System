@@ -34,12 +34,21 @@ Route::get('/dashboard', function () {
 
 
 // Student-related routes group
-Route::prefix('students')->group(function () {
+Route::prefix('students')->group(function () {          //in short this route is http://127.0.0.1:8000/students/ 'automatic students na siya mag start'
     // Route for listing students
     Route::get('/', [StudentController::class, 'index'])->name('students.index');
 
     // Route for viewing a specific student
     Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
+
+    // Route for walay gamit kay mag model man ta, dili ta mag lahi nga page 
+    Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
+
+    // Route for updating a student (update button sa modal)
+    Route::put('/student/{id}', [StudentController::class, 'update'])->name('student.update');
+
+    //Route for deleting student (delete button)
+    Route::delete('/student/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
 
     // Add more student-related routes as needed
 });

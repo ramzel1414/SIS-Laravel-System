@@ -92,5 +92,9 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- Custom js for pages that has data-table  -->
     <script src="../../../assets/js/data-table.js"></script>
 	<!-- End custom js for this page -->
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	
 </body>
 </html>    
