@@ -2,10 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\GradeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/logout', function () {
-    Auth::logout(); // Log the user out
-    return redirect('/'); // Redirect to the welcome page or any other page
-})->name('logout');
-
-
 Route::get('/dashboard', function () {
-    return view('index');
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
