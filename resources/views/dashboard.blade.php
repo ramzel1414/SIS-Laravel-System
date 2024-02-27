@@ -1,22 +1,22 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<!--
+Template Name: NobleUI - HTML Bootstrap 5 Admin Dashboard Template
+Author: NobleUI
+Website: https://www.nobleui.com
+Portfolio: https://themeforest.net/user/nobleui/portfolio
+Contact: nobleui123@gmail.com
+Purchase: https://1.envato.market/nobleui_admin
+License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+-->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="NobleUI">
+	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-<<<<<<< HEAD
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
-=======
 	<title>Student Information System</title>
 
   <!-- Fonts -->
@@ -38,14 +38,9 @@
 	<link rel="stylesheet" href="../assets/vendors/flag-icon-css/css/flag-icon.min.css">
 	<!-- endinject -->
 
-    <!-- Layout styles -->  
-    <link rel="stylesheet" href="../assets/css/demo2/style.css">
-    <!-- End layout styles -->
-
-	<!-- Custom css for pages that has data-table  -->
-    <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css">
-    <!-- End plugin css for this page -->
-  
+  <!-- Layout styles -->  
+	<link rel="stylesheet" href="../assets/css/demo2/style.css">
+  <!-- End layout styles -->
 
   <link rel="shortcut icon" href="../assets/images/favicon.png" />
 </head>
@@ -53,15 +48,15 @@
 
         @include('custom-layouts.sidebar');
 		<!-- partial -->
-	
+
 		<div class="page-wrapper">
-					
+
             @include('custom-layouts.header');
-            
+
             @yield('content');
 
             @include('custom-layouts.footer')
-		
+
 		</div>
 	</div>
 
@@ -70,8 +65,8 @@
 	<!-- endinject -->
 
 	<!-- Plugin js for this page -->
-    <script src="../assets/vendors/flatpickr/flatpickr.min.js"></script>
-    <script src="../assets/vendors/apexcharts/apexcharts.min.js"></script>
+  <script src="../assets/vendors/flatpickr/flatpickr.min.js"></script>
+  <script src="../assets/vendors/apexcharts/apexcharts.min.js"></script>
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
@@ -80,22 +75,8 @@
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-    <script src="../assets/js/dashboard-dark.js"></script>
+  <script src="../assets/js/dashboard-dark.js"></script>
 	<!-- End custom js for this page -->
 
-    <!-- Plugin js for this page -->
-    <script src="../../../assets/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
-	<!-- End plugin js for this page -->
-
-
-	<!-- Custom js for pages that has data-table  -->
-    <script src="../../../assets/js/data-table.js"></script>
-	<!-- End custom js for this page -->
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	
 </body>
-</html>    
->>>>>>> 143a8355eb706acff66e24a54a1521c4fcfea443
+</html> 
