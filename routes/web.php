@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,51 +22,57 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/logout', function () {
+    Auth::logout(); // Log the user out
+    return redirect('/'); // Redirect to the welcome page or any other page
+})->name('logout');
+
+
 Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 // Student-related routes group
-Route::prefix('students')->group(function () {          //in short this route is http://127.0.0.1:8000/students/ 'automatic students na siya mag start'
-    // Route for listing students
-    Route::get('/', [StudentController::class, 'index'])->name('students.index');
+Route::prefix('students')->group(function () {          //in short this group route is http://127.0.0.1:8000/students/.. 'automatic students na siya mag start'
+   
+    // Route for students page
+    Route::get('/', [StudentController::class, 'index'])->name('student.index');
 
-    // Route for viewing a specific student
-    Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
+    // Route for adding a student (add student button sa modal)
+    Route::post('/student', [StudentController::class, 'store'])->name('student.store');
 
-    // Route for walay gamit kay mag model man ta, dili ta mag lahi nga page 
-    Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
-
-    // Route for updating a student (update button sa modal)
+    // Route for updating a student (edit button sa modal)
     Route::put('/student/{id}', [StudentController::class, 'update'])->name('student.update');
 
     //Route for deleting student (delete button)
     Route::delete('/student/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
 
-    // Add more student-related routes as needed
+});
+
+// Subject-related routes group
+Route::prefix('subjects')->group(function () {
+
+    // Route for showing subjects page
+    Route::get('/', [SubjectController::class, 'index'])->name('subject.index');
+
 });
 
 // Teacher-related routes group
 Route::prefix('teachers')->group(function () {
-    // Route for listing students
-    Route::get('/', [TeacherController::class, 'index'])->name('teachers.index');
 
-    // Route for viewing a specific student
-    Route::get('/{teachers}', [TeacherController::class, 'show'])->name('teachers.show');
+    // Route for showing teachers page
+    Route::get('/', [TeacherController::class, 'index'])->name('teacher.index');
 
-    // Add more student-related routes as needed
 });
 
 // Teacher-related routes group
 Route::prefix('grades')->group(function () {
-    // Route for listing students
-    Route::get('/', [GradeController::class, 'index'])->name('grades.index');
 
-    // Route for viewing a specific student
-    Route::get('/{grades}', [GradeController::class, 'show'])->name('grades.show');
+    // Route for showing grades page
+    Route::get('/', [GradeController::class, 'index'])->name('grade.index');
 
-    // Add more student-related routes as needed
 });
 
 

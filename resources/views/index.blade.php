@@ -111,7 +111,8 @@
     <div class="row">
       <div class="col-12 col-xl-12 stretch-card">
         <div class="row flex-grow-1">
-          <div class="col-md-4 grid-margin stretch-card">
+          <a href="{{route('teachers.index')}}">
+            <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-baseline">
@@ -146,7 +147,9 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 grid-margin stretch-card">
+        </a>
+        <a href="{{route('students.index')}}">
+          <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-baseline">
@@ -182,7 +185,9 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4 grid-margin stretch-card">
+        </a>
+        <a href="{{route('grades.index')}}">
+          <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-baseline">
@@ -217,6 +222,7 @@
               </div>
             </div>
           </div>
+        </a>
         </div>
       </div>
     </div> <!-- row -->

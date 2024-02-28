@@ -17,13 +17,13 @@ License: For each use you must have a valid license purchased only from above li
 	<meta name="author" content="NobleUI">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<title>Student Information System</title>
+	<title>SIS - Basic CRUDS</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-  <!-- End fonts -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- End fonts -->
 
 	<!-- core:css -->
 	<link rel="stylesheet" href="../assets/vendors/core/core.css">
@@ -38,9 +38,12 @@ License: For each use you must have a valid license purchased only from above li
 	<link rel="stylesheet" href="../assets/vendors/flag-icon-css/css/flag-icon.min.css">
 	<!-- endinject -->
 
-  <!-- Layout styles -->  
-	<link rel="stylesheet" href="../assets/css/demo2/style.css">
-  <!-- End layout styles -->
+    <!-- Layout styles -->  
+    <link rel="stylesheet" href="../assets/css/demo2/style.css">
+    <!-- End layout styles -->
+
+  	<!-- Plugin css for page that has data tables -->
+    <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css">
 
   <link rel="shortcut icon" href="../assets/images/favicon.png" />
 </head>
@@ -65,8 +68,8 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Plugin js for this page -->
-  <script src="../assets/vendors/flatpickr/flatpickr.min.js"></script>
-  <script src="../assets/vendors/apexcharts/apexcharts.min.js"></script>
+    <script src="../assets/vendors/flatpickr/flatpickr.min.js"></script>
+    <script src="../assets/vendors/apexcharts/apexcharts.min.js"></script>
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
@@ -75,8 +78,14 @@ License: For each use you must have a valid license purchased only from above li
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
-  <script src="../assets/js/dashboard-dark.js"></script>
+    <script src="../assets/js/dashboard-dark.js"></script>
 	<!-- End custom js for this page -->
+
+    <!-- Plugin js for pages that has data tables -->
+    <script src="../../../assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
+    <!-- Custom js for pages that has data tables -->
+    <script src="../../../assets/js/data-table.js"></script>
 
 </body>
 </html> 
