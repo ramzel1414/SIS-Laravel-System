@@ -57,17 +57,18 @@ Route::prefix('subjects')->group(function () {
     // Route for showing subjects page
     Route::get('/', [SubjectController::class, 'index'])->name('subject.index');
 
+    // Route for adding a student (add student button sa modal)
+    Route::post('/subject', [SubjectController::class, 'store'])->name('subject.store');
+
+    // Route for updating a student (edit button sa modal)
+    Route::put('/subject/{id}', [SubjectController::class, 'update'])->name('subject.update');
+    
+    //Route for deleting subject (delete button)
+    Route::delete('/subject/{id}', [SubjectController::class, 'destroy'])->name('subject.destroy');
+
 });
 
-// Teacher-related routes group
-Route::prefix('teachers')->group(function () {
-
-    // Route for showing teachers page
-    Route::get('/', [TeacherController::class, 'index'])->name('teacher.index');
-
-});
-
-// Teacher-related routes group
+// Grade-related routes group
 Route::prefix('grades')->group(function () {
 
     // Route for showing grades page

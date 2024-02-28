@@ -64,3 +64,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+#want to add table?
+-php artisan make:migration create_<subjects>_table
+-php artisan migrate
+-php artisan make:model <Subject>
+optional
+-create a factory, then fill out for fake data
+-create a seeder, and run that seeder
+-you have a table with fake data's
