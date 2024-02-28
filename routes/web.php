@@ -74,6 +74,12 @@ Route::prefix('grades')->group(function () {
     // Route for showing grades page
     Route::get('/', [GradeController::class, 'index'])->name('grade.index');
 
+    // Route for updating a student (edit button sa modal)
+    Route::put('/grade/{id}', [GradeController::class, 'update'])->name('grade.update');
+
+    //Route for deleting grade (delete button)
+    Route::delete('/grade/{id}', [GradeController::class, 'destroy'])->name('grade.destroy');
+
 });
 
 

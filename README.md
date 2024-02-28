@@ -68,9 +68,15 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 #want to add table?
 -php artisan make:migration create_<subjects>_table
--php artisan migrate
+-php artisan migrate (to fill out table attributes(columns))
 -php artisan make:model <Subject>
 optional
 -create a factory, then fill out for fake data
+-be sure that the migration has those type of fake data you about to create
 -create a seeder, and run that seeder
 -you have a table with fake data's
+-just remember to fill out those 3 folders under database if you want a fake data
+note
+-table attributes(columns) need to be there if you seed,
+-if they're not existing, but you already defined them in your migrations, 
+-try to migrate rollback --step1 and run php artisan migrate again.
