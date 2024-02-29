@@ -15,7 +15,7 @@ class GradeController extends Controller
         $grades = Grade::all(); // Fetch all students from the database
         $students = Student::all(); // Fetch all students
         $subjects = Subject::all(); // Fetch all subjects
-        return view('grade.index', ['grades' => $grades, 'students' => $students, 'subjects' => $subjects]);
+        return view('grade.index', ['grades' => $grades, 'students' => $students, 'subjects' => $subjects]);    //para ma display nato sila sa modal like add katung drop down didto
     }
 
     //method to create grade
@@ -43,7 +43,8 @@ class GradeController extends Controller
         //$grade = new Grade([ <values> ]);
         //$grade->save()
         //gipili lang nako nang Grade::create kay one line ug wala lang,
-
+        //ALSO CAREFUL FOR ATTRIBUT MISMATCH! (e.g. I've been doing this for hours and couldn't add a grade, Laravel also didn't throw an error,just redirects me back to grade.index like nothing happens, TURNS OUT, ANG "remarks" nga attribute sa database, kay "remark" akong nabutang kanag line 39 & 30 sa taas.
+        
 
 
         return redirect()->route('grade.index')->with('success', 'Grade added successfully');
@@ -56,14 +57,14 @@ class GradeController extends Controller
         $this->validate($request, [
             'grade' => 'required|string|max:255',
             'date' => 'required|date', // Use 'date' rule for a date field
-            'remark' => 'required|string|max:255',
+            'remarks' => 'required|string|max:255',
         ]);
 
         $grade = Grade::findOrFail($id);
         $grade->update([
             'grade' => $request->input('grade'),
             'date' => $request->input('date'),
-            'remark' => $request->input('remark'),
+            'remarks' => $request->input('remarks'),
             // Assuming you have 'student_id' and 'subject_id' in the grades table
             'student_id' => $request->input('student_id'),
             'subject_id' => $request->input('subject_id'),

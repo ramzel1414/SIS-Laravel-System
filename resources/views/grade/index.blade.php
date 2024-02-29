@@ -29,21 +29,35 @@
                                     <!-- Dropdown for selecting student -->
                                     <div class="form-group">
                                         <label for="addStudent">Select Student:</label>
-                                        <select name="student_id" class="form-control opacity-75 mb-2" required>
-                                            @foreach($students as $student)
-                                                <option value="{{ $student->id }}">{{ $student->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <div class="input-group mb-2">
+                                            <select name="student_id" class="form-control opacity-75 mb-2" required>
+                                                @foreach($students as $student)
+                                                    <option value="{{ $student->id }}">{{ $student->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i data-feather="chevron-down"></i>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Dropdown for selecting subject -->
                                     <div class="form-group">
                                         <label for="addSubject">Select Subject:</label>
-                                        <select name="subject_id" class="form-control opacity-75 mb-2" required>
-                                            @foreach($subjects as $subject)
-                                                <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
-                                            @endforeach
-                                        </select>
+                                        <div class="input-group mb-2">
+                                            <select name="subject_id" class="form-control opacity-75" required>
+                                                @foreach($subjects as $subject)
+                                                    <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i data-feather="chevron-down"></i>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Other fields -->
@@ -109,8 +123,8 @@
                                                       @csrf
                                                       @method('PUT')
                                                       
-                                                      <input type="text" name="student_id" value="{{ $grade->student_id }}">
-                                                      <input type="text" name="subject_id" value="{{ $grade->subject_id }}">
+                                                      <input type="text" name="student_id" value="{{ $grade->student_id }}" hidden>
+                                                      <input type="text" name="subject_id" value="{{ $grade->subject_id }}" hidden>
                                                       
                                                       <div class="form-group">
                                                           <label for="">Grade:</label>
@@ -119,7 +133,7 @@
                                   
                                                       <div class="form-group">
                                                           <label for="editDate{{ $grade->id }}">Date:</label>
-                                                          <input type="date" class="form-control opacity-75 mb-2" id="editDate{{ $grade->id }}" name="date" value="{{ $grade->date }}" required>
+                                                          <input type="date" class="form-control opacity-75 mb-2 text-light" id="editDate{{ $grade->id }}" name="date" value="{{ $grade->date }}" required>
                                                       </div>
                                   
                                                       <div class="form-group">
