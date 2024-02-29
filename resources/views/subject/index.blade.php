@@ -8,10 +8,10 @@
             <div class="card">
               <div class="card-body">
                 <div class="d-flex justify-content-between my-2">
-                <h6 class="card-title">Students Table</h6>                                   
+                <h6 class="card-title">Subjects Table</h6>                                   
                 <!-- Add Student Button -->
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
-                    Add Student
+                    Add Subject
                 </button>
               </div>
 
