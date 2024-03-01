@@ -4,7 +4,7 @@
     <nav class="sidebar">
   <div class="sidebar-header">
     <a href="#" class="sidebar-brand">
-      Noble<span>UI</span>
+      SIS-<span>UI</span>
     </a>
     <div class="sidebar-toggler not-active">
       <span></span>
