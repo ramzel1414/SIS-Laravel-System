@@ -34,7 +34,14 @@ class StudentController extends Controller
         $student->age = $request->input('age');
         $student->save();
 
-        return redirect()->route('student.index')->with('success', 'Student added successfully');
+        //toaster notif when added
+        $notification = array ( 
+            'message' => 'Student Added Successfully',
+            'alert-type' => 'success',
+        );
+
+
+        return redirect()->route('student.index')->with($notification);
     }
 
     // New method to update the edited student
@@ -50,7 +57,14 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->update($request->all());
 
-        return redirect()->route('student.index')->with('success', 'Student updated successfully');
+        
+        //toaster notif when update
+        $notification = array ( 
+            'message' => 'Student Updated Successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('student.index')->with($notification);
     }
 
     // New method to delete a specific student
@@ -59,7 +73,14 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
 
-        return redirect()->route('student.index')->with('success', 'Student deleted successfully');
+        
+        //toaster notif when deleted
+        $notification = array ( 
+            'message' => 'Student Deleted Successfully',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('student.index')->with($notification);
     }
 }
 

@@ -45,12 +45,14 @@ License: For each use you must have a valid license purchased only from above li
   	<!-- Plugin css for page that has data tables -->
     <link rel="stylesheet" href="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css">
 
+	{{-- toaster for update notif --}}
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
   <link rel="shortcut icon" href="../assets/images/favicon.png" />
 </head>
 <body>
 
         @include('custom-layouts.sidebar');
-		<!-- partial -->
 
 		<div class="page-wrapper">
 
@@ -86,6 +88,33 @@ License: For each use you must have a valid license purchased only from above li
     <script src="../../../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
     <!-- Custom js for pages that has data tables -->
     <script src="../../../assets/js/data-table.js"></script>
+
+	{{-- toaster for update notif --}}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+	<script>
+	 @if(Session::has('message'))
+	 var type = "{{ Session::get('alert-type','info') }}"
+	 switch(type){
+		case 'info':
+		toastr.info(" {{ Session::get('message') }} ");
+		break;
+	
+		case 'success':
+		toastr.success(" {{ Session::get('message') }} ");
+		break;
+	
+		case 'warning':
+		toastr.warning(" {{ Session::get('message') }} ");
+		break;
+	
+		case 'error':
+		toastr.error(" {{ Session::get('message') }} ");
+		break; 
+	 }
+	 @endif 
+	</script>
+	{{-- end of toaster for update notif --}}
 
 </body>
 </html> 

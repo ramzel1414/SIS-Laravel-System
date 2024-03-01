@@ -35,7 +35,13 @@ class SubjectController extends Controller
         $subject->semester = $request->input('semester');
         $subject->save();
 
-        return redirect()->route('subject.index')->with('success', 'Subject added successfully');
+        //toaster notif when added
+        $notification = array ( 
+            'message' => 'Subject Added Successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('subject.index')->with($notification);
     }
 
     
@@ -53,8 +59,15 @@ class SubjectController extends Controller
 
         $subject = Subject::findOrFail($id);
         $subject->update($request->all());
+
         
-        return redirect()->route('subject.index')->with('success', 'Subject updated successfully');
+        //toaster notif when updated
+        $notification = array ( 
+            'message' => 'Subject Updated Successfully',
+            'alert-type' => 'success',
+        );
+        
+        return redirect()->route('subject.index')->with($notification);
     }
     
     // New method to delete a specific subject
@@ -63,7 +76,14 @@ class SubjectController extends Controller
         $subject = subject::findOrFail($id);
         $subject->delete();
 
-        return redirect()->route('subject.index')->with('success', 'Subject deleted successfully');
+        
+        //toaster notif when deleted
+        $notification = array ( 
+            'message' => 'Subject Deleted Successfully',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('subject.index')->with($notification);
     }
 
 }

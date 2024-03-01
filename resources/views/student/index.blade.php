@@ -30,17 +30,17 @@
 
                                     <div class="form-group">
                                         <label for="addName">Name:</label>
-                                        <input type="text" class="form-control opacity-75 mb-2" id="addName" name="name" required>
+                                        <input type="text" class="form-control opacity-75 mb-2" id="addName" name="name" placeholder="Enter Name" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="addAddress">Address:</label>
-                                        <input type="text" class="form-control opacity-75 mb-2" id="addAddress" name="address" required>
+                                        <input type="text" class="form-control opacity-75 mb-2" id="addAddress" name="address" placeholder="Enter Address" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="addAge">Age:</label>
-                                        <input type="number" class="form-control opacity-75 mb-2" id="addAge" name="age" required>
+                                        <input type="number" class="form-control opacity-75 mb-2" id="addAge" name="age" placeholder="Enter Age" required>
                                     </div>
 
                                     <div class="modal-footer">
@@ -66,8 +66,8 @@
                     <tbody>
                         @foreach($students as $student)
                             <tr>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->address }}</td>
+                                <td>{{ ucfirst($student->name) }}</td>
+                                <td>{{ ucfirst($student->address) }}</td>
                                 <td>{{ $student->age }}</td>
                                 <td>
                                     <!-- Edit Button -->

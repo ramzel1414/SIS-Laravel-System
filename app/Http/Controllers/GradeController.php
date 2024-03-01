@@ -39,6 +39,7 @@ class GradeController extends Controller
             'remarks' => $request->input('remarks'),
         ]);
 
+
         //puwede japun 
         //$grade = new Grade([ <values> ]);
         //$grade->save()
@@ -47,7 +48,13 @@ class GradeController extends Controller
         
 
 
-        return redirect()->route('grade.index')->with('success', 'Grade added successfully');
+        //toaster notif when Added
+        $notification = array ( 
+            'message' => 'Grade Added Successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('grade.index')->with($notification);
     }
 
     // New method to update the edited grade
@@ -70,7 +77,13 @@ class GradeController extends Controller
             'subject_id' => $request->input('subject_id'),
         ]);
 
-        return redirect()->route('grade.index')->with('success', 'Grade updated successfully');
+        //toaster notif when updated
+        $notification = array ( 
+            'message' => 'Grade UPdated Successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('grade.index')->with($notification);
     }
 
 
@@ -82,6 +95,12 @@ class GradeController extends Controller
         $grade = Grade::findOrFail($id);
         $grade->delete();
 
-        return redirect()->route('grade.index')->with('success', 'Grade deleted successfully');
+                //toaster notif when updated
+        $notification = array ( 
+            'message' => 'Grade Deleted Successfully',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('grade.index')->with($notification);
     }
 }

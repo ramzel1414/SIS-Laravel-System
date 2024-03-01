@@ -29,27 +29,27 @@
 
                                 <div class="form-group">
                                     <label for="addSubject">Subject:</label>
-                                    <input type="text" class="form-control opacity-75 mb-2" id="addSubject" name="subject" required>
+                                    <input type="text" class="form-control opacity-75 mb-2" id="addSubject" name="subject" placeholder="Enter Subject" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="addDescription">Description:</label>
-                                    <input type="text" class="form-control opacity-75 mb-2" id="addDescription" name="description" required>
+                                    <input type="text" class="form-control opacity-75 mb-2" id="addDescription" name="description" placeholder="Enter Description" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="addCode">Code:</label>
-                                    <input type="text" class="form-control opacity-75 mb-2" id="addCode" name="code" required>
+                                    <input type="text" class="form-control opacity-75 mb-2" id="addCode" name="code" placeholder="Enter Code" required>
                                 </div>
 
                                 <div class="form-group">
                                   <label for="addCredits">Credits:</label>
-                                  <input type="number" class="form-control opacity-75 mb-2" id="addCredits" name="credits" required>
+                                  <input type="number" class="form-control opacity-75 mb-2" id="addCredits" name="credits" placeholder="Enter Credits" required>
                               </div>
 
                               <div class="form-group">
                                 <label for="addSemester">Semester:</label>
-                                <input type="text" class="form-control opacity-75 mb-2" id="addSemester" name="semester" required>
+                                <input type="text" class="form-control opacity-75 mb-2" id="addSemester" name="semester" placeholder="Enter Semester"required>
                             </div>
 
                                 <div class="modal-footer">
@@ -77,9 +77,9 @@
                   <tbody>
                     @foreach($subjects as $subject)
                     <tr>
-                        <td>{{ $subject->subject }}</td>
-                        <td>{{ $subject->description }}</td>
-                        <td>{{ $subject->code }}</td>
+                        <td>{{ ucfirst($subject->subject) }}</td>
+                        <td>{{ ucfirst($subject->description) }}</td>
+                        <td>{{ ucfirst($subject->code) }}</td>
                         <td>{{ $subject->credits }}</td>
                         <td>{{ $subject->semester }}</td>
                         <td>

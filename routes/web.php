@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,14 @@ Route::get('/', function () {
 });
 
 
+//route for log-out
 Route::get('/logout', function () {
-    Auth::logout(); // Log the user out
+    Auth::logout();
     return redirect('/'); // Redirect to the welcome page or any other page
 })->name('logout');
 
 
+//route for dashboard
 Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -86,7 +89,7 @@ Route::prefix('grades')->group(function () {
 });
 
 
-
+//breeze scafold (default)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
