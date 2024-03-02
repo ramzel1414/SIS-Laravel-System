@@ -31,6 +31,7 @@
                                         <label for="addStudent">Select Student:</label>
                                         <div class="input-group mb-2">
                                             <select name="student_id" class="form-control opacity-75 mb-2" required>
+                                                <option value="" selected disabled>Click here to select</option>
                                                 @foreach($students as $student)
                                                     <option value="{{ $student->id }}">{{ $student->name }}</option>
                                                 @endforeach
@@ -48,6 +49,7 @@
                                         <label for="addSubject">Select Subject:</label>
                                         <div class="input-group mb-2">
                                             <select name="subject_id" class="form-control opacity-75" required>
+                                                <option value="" selected disabled>Click here to select</option>
                                                 @foreach($subjects as $subject)
                                                     <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
                                                 @endforeach
@@ -63,7 +65,10 @@
                                     <!-- Other fields -->
                                     <div class="form-group">
                                         <label for="addGrade">Grade:</label>
-                                        <input type="text" class="form-control opacity-75 mb-2" id="addGrade" name="grade" required>
+                                        <input type="text" class="form-control opacity-75 mb-2" id="addGrade" name="grade" placeholder="Enter a grade" required>
+                                        @error('grade')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
@@ -73,7 +78,7 @@
 
                                     <div class="form-group">
                                         <label for="addRemarks">Remarks:</label>
-                                        <textarea class="form-control opacity-75 mb-2" id="addRemarks" name="remarks"></textarea>
+                                        <textarea class="form-control opacity-75 mb-2" id="addRemarks" name="remarks" placeholder="Enter the remarks"></textarea>
                                     </div>
 
                                     <div class="modal-footer">
@@ -129,6 +134,9 @@
                                                       <div class="form-group">
                                                           <label for="">Grade:</label>
                                                           <input type="text" class="form-control opacity-75 mb-2" id="" name="grade" value="{{ $grade->grade }}" required>
+                                                          @error('grade')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                       </div>
                                   
                                                       <div class="form-group">

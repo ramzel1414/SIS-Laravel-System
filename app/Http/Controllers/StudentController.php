@@ -13,58 +13,87 @@ class StudentController extends Controller
         return view('student.index', ['students' => $students]);
     }
 
-    // New method to add a student
-    public function store(Request $request) {
-        // Validate the input
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'age' => 'required|integer|min:1',
-        ]);
+    // Method to add a new student
+    public function store(Request $request)
+    {
+        try {
+            // Validate the student data
+            $this->validate($request, [
+                'name' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'age' => 'required|integer|min:15|max:25', // Age validation rule
+            ], [
+                'age.min' => 'The age must be at least :min.',
+                'age.max' => 'The age must not be greater than :max.',
+            ]);
 
-        // Check if validation fails
-        if ($validator->fails()) {
-            return redirect()->route('student.index')->withErrors($validator)->withInput();
+            // Create a new student
+            Student::create([
+                'name' => $request->input('name'),
+                'address' => $request->input('address'),
+                'age' => $request->input('age'),
+                // Add other fields as needed
+            ]);
+
+            // Toaster notification when added
+            $notification = [
+                'message' => 'Student Added Successfully',
+                'alert-type' => 'success',
+            ];
+
+            return redirect()->route('student.index')->with($notification);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // If validation fails, show Toastr error notification and flash errors to the session
+            $errors = $e->errors();
+            $errorMessage = reset($errors)[0]; // Get the first error message
+
+            $notification = [
+                'message' => $errorMessage,
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->withInput()->withErrors($errors)->with($notification);
         }
-
-        // Create a new student
-        $student = new Student();
-        $student->name = $request->input('name');
-        $student->address = $request->input('address');
-        $student->age = $request->input('age');
-        $student->save();
-
-        //toaster notif when added
-        $notification = array ( 
-            'message' => 'Student Added Successfully',
-            'alert-type' => 'success',
-        );
-
-
-        return redirect()->route('student.index')->with($notification);
     }
 
     // New method to update the edited student
     public function update(Request $request, $id)
     {
-        // Validate and update the student data
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'age' => 'required|integer|min:1',
-        ]);
+        try {
+            // Validate and update the student data
+            $this->validate($request, [
+                'name' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'age' => 'required|integer|min:15|max:25', // Updated validation rule for age
+            ], [
+                'age.min' => 'The age must be at least :min.',
+                'age.max' => 'The age must not be greater than :max.',
+            ]);
 
-        $student = Student::findOrFail($id);
-        $student->update($request->all());
+            $student = Student::findOrFail($id);
+            $student->update($request->all());
 
-        
-        //toaster notif when update
-        $notification = array ( 
-            'message' => 'Student Updated Successfully',
-            'alert-type' => 'success',
-        );
+            // Toaster notification when updated
+            $notification = [
+                'message' => 'Student Updated Successfully',
+                'alert-type' => 'success',
+            ];
 
-        return redirect()->route('student.index')->with($notification);
+            return redirect()->route('student.index')->with($notification);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            
+            // If validation fails, show Toastr error notification and flash errors to the session
+            $errors = $e->errors();
+            $errorMessage = reset($errors)[0]; // Get the first error message
+
+            $notification = [
+                'message' => $errorMessage,
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->withInput()->withErrors($errors)->with($notification);
+        }
     }
 
     // New method to delete a specific student

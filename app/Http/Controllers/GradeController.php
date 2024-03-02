@@ -21,11 +21,12 @@ class GradeController extends Controller
     //method to create grade
     public function store(Request $request)
     {
+        try {
         // Validate the request data
         $this->validate($request, [
             'student_id' => 'required|exists:students,id',
             'subject_id' => 'required|exists:subjects,id',
-            'grade' => 'required|string|max:255',
+            'grade' => 'required|numeric|min:1|max:5',
             'date' => 'required|date',
             'remarks' => 'required|string|max:255',
         ]);
@@ -55,35 +56,63 @@ class GradeController extends Controller
         );
 
         return redirect()->route('grade.index')->with($notification);
+
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // If validation fails, show Toastr error notification and flash errors to the session
+            $errors = $e->errors();
+            $errorMessage = reset($errors)[0]; // Get the first error message
+    
+            $notification = [
+                'message' => $errorMessage,
+                'alert-type' => 'error',
+            ];
+    
+            return redirect()->back()->withInput()->withErrors($errors)->with($notification);
+        }
+
     }
 
     // New method to update the edited grade
     public function update(Request $request, $id)
     {
-        // Validate and update the student data
-        $this->validate($request, [
-            'grade' => 'required|string|max:255',
-            'date' => 'required|date', // Use 'date' rule for a date field
-            'remarks' => 'required|string|max:255',
-        ]);
+        try {
+            // Validate and update the grade data
+            $this->validate($request, [
+                'grade' => 'required|numeric|min:1|max:5',
+                'date' => 'required|date',
+                'remarks' => 'required|string|max:255',
+            ]);
 
-        $grade = Grade::findOrFail($id);
-        $grade->update([
-            'grade' => $request->input('grade'),
-            'date' => $request->input('date'),
-            'remarks' => $request->input('remarks'),
-            // Assuming you have 'student_id' and 'subject_id' in the grades table
-            'student_id' => $request->input('student_id'),
-            'subject_id' => $request->input('subject_id'),
-        ]);
+            $grade = Grade::findOrFail($id);
+            $grade->update([
+                'grade' => $request->input('grade'),
+                'date' => $request->input('date'),
+                'remarks' => $request->input('remarks'),
+                // Assuming you have 'student_id' and 'subject_id' in the grades table
+                'student_id' => $request->input('student_id'),
+                'subject_id' => $request->input('subject_id'),
+            ]);
 
-        //toaster notif when updated
-        $notification = array ( 
-            'message' => 'Grade UPdated Successfully',
-            'alert-type' => 'success',
-        );
+            // Toaster notification when updated
+            $notification = [
+                'message' => 'Grade Updated Successfully',
+                'alert-type' => 'success',
+            ];
 
-        return redirect()->route('grade.index')->with($notification);
+            return redirect()->route('grade.index')->with($notification);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // If validation fails, show Toastr error notification and flash errors to the session
+            $errors = $e->errors();
+            $errorMessage = reset($errors)[0]; // Get the first error message
+
+            $notification = [
+                'message' => $errorMessage,
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->withInput()->withErrors($errors)->with($notification);
+        }
     }
 
 
@@ -104,3 +133,8 @@ class GradeController extends Controller
         return redirect()->route('grade.index')->with($notification);
     }
 }
+
+
+//Here, theres actually a Discrepancy going on in my update and store method, when you look at the validation, the grade has required||NUMBERIC||max/min..  
+//But when you look at the equivalent code for the grade form, it is in type text. I don't know whats going on but as long as it accepts value with decimal between 1-5,
+//I'm totally fine with it, The thing is when you change the type of grade to number in the input, it will not accept numbers with decimal

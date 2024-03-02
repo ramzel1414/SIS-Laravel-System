@@ -39,18 +39,32 @@
 
                                 <div class="form-group">
                                     <label for="addCode">Code:</label>
-                                    <input type="text" class="form-control opacity-75 mb-2" id="addCode" name="code" placeholder="Enter Code" required>
+                                    <input type="text" class="form-control opacity-75 mb-2" id="addCode" name="code" placeholder="Enter Code (example: T123)" required>
+                                    @error('code')
+                                      <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
                                   <label for="addCredits">Credits:</label>
-                                  <input type="number" class="form-control opacity-75 mb-2" id="addCredits" name="credits" placeholder="Enter Credits" required>
+                                  <input type="number" class="form-control opacity-75 mb-2" id="addCredits" name="credits" placeholder="Enter Credits" required min="1" max="5">
                               </div>
 
                               <div class="form-group">
-                                <label for="addSemester">Semester:</label>
-                                <input type="text" class="form-control opacity-75 mb-2" id="addSemester" name="semester" placeholder="Enter Semester"required>
-                            </div>
+                                <label for="addSemester">Select Semester:</label>
+                                <div class="input-group mb-2">
+                                    <select class="form-control opacity-75" id="addSemester" name="semester" required>
+                                        <option value="" selected disabled>Click here to select</option>
+                                        <option value="1st">1st Semester</option>
+                                        <option value="2nd">2nd Semester</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i data-feather="chevron-down"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                              </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -111,20 +125,34 @@
                                               </div>
                           
                                               <div class="form-group">
-                                                  <label for="editCode{{ $subject->id }}">Code:</label>
-                                                  <input type="text" class="form-control opacity-75 mb-2" id="editCode{{ $subject->id }}" name="code" value="{{ $subject->code }}" required>
+                                                <label for="editCode{{ $subject->id }}">Subject Code:</label>
+                                                <input type="text" class="form-control opacity-75 mb-2 @error('code') is-invalid @enderror" id="editCode{{ $subject->id }}" name="code" value="{{ old('code', $subject->code) }}" required>
+                                                @error('code')
+                                                  <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
                                               </div>
+                                            
 
                                               <div class="form-group">
                                                 <label for="editCredits{{ $subject->id }}">Credits:</label>
-                                                <input type="number" class="form-control opacity-75 mb-2" id="editCredits{{ $subject->id }}" name="credits" value="{{ $subject->credits }}" required>
+                                                <input type="number" class="form-control opacity-75 mb-2" id="editCredits{{ $subject->id }}" name="credits" value="{{ $subject->credits }}" required min="1" max="5">
                                               </div>
 
                                               <div class="form-group">
-                                                <label for="editSemester{{ $subject->id }}">Credits:</label>
-                                                <input type="text" class="form-control opacity-75 mb-2" id="editSemester{{ $subject->id }}" name="semester" value="{{ $subject->semester }}" required>
+                                                <label for="editSemester{{ $subject->id }}">Semester:</label>
+                                                <div class="input-group mb-2">
+                                                  <select class="form-control opacity-75 mb-2" id="editSemester{{ $subject->id }}" name="semester" required>
+                                                      <option selected disabled>Click here to select</option>
+                                                      <option value="1st" {{ $subject->semester === '1st' ? 'selected' : '' }}>1st Semester</option>
+                                                      <option value="2nd" {{ $subject->semester === '2nd' ? 'selected' : '' }}>2nd Semester</option>
+                                                  </select>
+                                                  <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i data-feather="chevron-down"></i>
+                                                    </span>
+                                                </div>
+                                                </div>
                                               </div>
-                          
                                               <div class="modal-footer">
                                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                   <button type="submit" class="btn btn-primary">Save changes</button>
