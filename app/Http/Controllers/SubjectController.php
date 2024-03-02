@@ -32,7 +32,7 @@ public function store(Request $request)
             'credits' => 'required|integer|min:1',
             'semester' => 'required|string|max:255',
         ], [
-            'code.regex' => 'The Subject Code field must start with a capital letter followed by three digits, example: T123',
+            'code.regex' => 'The Subject Code must start with a capital letter followed by three digits, example: T123',
         ]);
 
         // Create a new subject

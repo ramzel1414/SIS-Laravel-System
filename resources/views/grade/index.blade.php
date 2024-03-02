@@ -105,8 +105,8 @@
                     <tbody>
                         @foreach($grades as $grade)
                             <tr>
-                              <td>{{ $grade->student->name }}</td>
-                              <td>{{ $grade->subject->subject }}</td>
+                              <td>{{ ucfirst($grade->student->name) }}</td>
+                              <td>{{ ucfirst($grade->subject->subject) }}</td>
                               <td>{{ $grade->grade }}</td>
                               <td>{{ $grade->date }}</td>
                               <td>{{ $grade->remarks }}</td>
