@@ -80,3 +80,5 @@ note
 -table attributes(columns) need to be there if you seed,
 -if they're not existing, but you already defined them in your migrations, 
 -try to migrate rollback --step1 and run php artisan migrate again.
+
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=ramzel414)](https://github.com/anuraghazra/github-readme-stats)

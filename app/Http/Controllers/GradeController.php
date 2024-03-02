@@ -27,7 +27,17 @@ class GradeController extends Controller
             'student_id' => 'required|exists:students,id',
             'subject_id' => 'required|exists:subjects,id',
             'grade' => 'required|numeric|min:1|max:5',
-            'date' => 'required|date',
+            'date' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    // Custom validation to check the date format
+                    $parsedDate = date_parse_from_format('Y-m-d', $value);
+                    if ($parsedDate['error_count'] > 0 || $parsedDate['warning_count'] > 0) {
+                        $fail('The '.$attribute.' is not a valid date.');
+                    }
+                },
+            ],
             'remarks' => 'required|string|max:255',
         ]);
 
