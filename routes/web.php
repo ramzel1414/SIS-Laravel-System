@@ -38,7 +38,7 @@ Route::get('/dashboard', function () {
 
 
 // Student-related routes group
-Route::prefix('students')->group(function () {          //in short this group route is http://127.0.0.1:8000/students/.. 'automatic students na siya mag start'
+Route::prefix('students')->middleware(['auth', 'verified'])->group(function () {          //in short this group route is http://127.0.0.1:8000/students/.. 'automatic students na siya mag start'
    
     // Route for students page
     Route::get('/', [StudentController::class, 'index'])->name('student.index');
@@ -55,7 +55,7 @@ Route::prefix('students')->group(function () {          //in short this group ro
 });
 
 // Subject-related routes group
-Route::prefix('subjects')->group(function () {
+Route::prefix('subjects')->middleware(['auth', 'verified'])->group(function () {
 
     // Route for showing subjects page
     Route::get('/', [SubjectController::class, 'index'])->name('subject.index');
@@ -72,7 +72,7 @@ Route::prefix('subjects')->group(function () {
 });
 
 // Grade-related routes group
-Route::prefix('grades')->group(function () {
+Route::prefix('grades')->middleware(['auth', 'verified'])->group(function () {
 
     // Route for showing grades page
     Route::get('/', [GradeController::class, 'index'])->name('grade.index');

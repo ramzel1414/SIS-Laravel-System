@@ -1,3 +1,12 @@
+
+# SetUp
+- composer install
+- npm install
+
+# Running
+- php artisan serve
+- npm run dev 
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -80,5 +89,3 @@ note
 -table attributes(columns) need to be there if you seed,
 -if they're not existing, but you already defined them in your migrations, 
 -try to migrate rollback --step1 and run php artisan migrate again.
-
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=ramzel414)](https://github.com/anuraghazra/github-readme-stats)
